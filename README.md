@@ -1,3 +1,3 @@
 ### Hello!
 
-Repository for my Mobile Programming course in *Haaga-Helia University of Applied Sciences*
+Repository for my assignments in Mobile Programming course
