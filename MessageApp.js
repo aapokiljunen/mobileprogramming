@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         padding: 5,
         backgroundColor: 'lightgrey',
     },
-
     listView: {
         marginTop: 5
     },
