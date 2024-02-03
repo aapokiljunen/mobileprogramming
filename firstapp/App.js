@@ -40,7 +40,6 @@ export default function App() {
             const record = { number: number, guesses: guessCounter + 1 };
             setRecords([...records, record]);
             if (guessCounter < recordLow) { setRecordLow(guessCounter + 1) };
-            console.log(recordLow);
             startGame();
         } else if (gNum > number) {
             setGuessText(`Your guess ${guessedNumber} was too high!`)

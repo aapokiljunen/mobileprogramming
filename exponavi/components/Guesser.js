@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Alert, Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function App() {
+export default function Guesser({ navigation }) {
 
     const [records, setRecords] = useState([]);
     const [guessText, setGuessText] = useState('Guess a number between 1-100');
@@ -40,7 +40,6 @@ export default function App() {
             const record = { number: number, guesses: guessCounter + 1 };
             setRecords([...records, record]);
             if (guessCounter < recordLow) { setRecordLow(guessCounter + 1) };
-            console.log(recordLow);
             startGame();
         } else if (gNum > number) {
             setGuessText(`Your guess ${guessedNumber} was too high!`)
@@ -58,19 +57,15 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <View style={{ flex: 2 }}>
-                <FlatList
-                    data={records}
-                    renderItem={({ item }) =>
-                        <View style={[styles.listItem, parseFloat(item.guesses) == recordLow ? styles.bestRecord : styles.listItem]}>
-                            <Text>Number: {item.number}. Guesses: {item.guesses} </Text>
-                        </View>
-                    }
-                />
-            </View>
-            <View style={{ flex: 5 }}>
-                <Text style={styles.guessText}>{guessText}</Text>
+            <View>
                 <View style={{ alignItems: 'center' }}>
+                    <Button
+                        title="History"
+                        onPress={() => navigation.navigate('History', { records: records, recordLow: recordLow })}
+                    />
+                </View>
+                <View style={{ alignItems: 'center' }}>
+                    <Text style={styles.guessText}>{guessText}</Text>
                     <Text>Number is between {lowValue} and {highValue}</Text>
                     <TextInput
                         keyboardType='numeric'
@@ -100,7 +95,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        marginTop: 50,
     },
     guessText: {
         fontSize: 20,
@@ -120,6 +114,7 @@ const styles = StyleSheet.create({
     },
     listView: {
         marginTop: 5,
+        alignItems: 'center'
     },
     bestRecord: {
         backgroundColor: 'lightgreen',
@@ -127,4 +122,4 @@ const styles = StyleSheet.create({
 });
 
 
-//Lähde ehdolliselle muotoilulle: https://stackoverflow.com/questions/45478621/react-native-styling-with-conditional
+//Lähde ehdolliselle muotoilulle: https://stackoverflow.com/questions/45478621/react-native-styling-with-condi
